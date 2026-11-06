@@ -42,4 +42,4 @@ python3 -m http.server 8000   # then open http://localhost:8000/almost-ripe.html
 
 Code: MIT. See [LICENSE](LICENSE). three.js is MIT; the fonts are under the SIL Open Font License.
 
-Built with Claude.
+Built with Claude for Joe Gao.
