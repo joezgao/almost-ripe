@@ -16,7 +16,7 @@ If your browser blocks local files, serve the folder instead:
 python3 -m http.server 8000   # then open http://localhost:8000/almost-ripe.html
 ```
 
-| | |
+| Action | Input |
 |---|---|
 | Start | click, or <kbd>Enter</kbd> / <kbd>Space</kbd> |
 | Walk | <kbd>W</kbd> <kbd>A</kbd> <kbd>S</kbd> <kbd>D</kbd> or the arrow keys |
