@@ -1,6 +1,8 @@
 # Almost Ripe
 
-![A dark tower with a searchlight under a pale moon; two choices float at the bottom: "look away" and "keep walking"](screenshots/shot-4-tower.png)
+[![Almost Ripe: the night corridor shatters, and a golden hillside with a lone apple tree comes through](loop/almost-ripe-loop.gif)](loop/almost-ripe-loop.mp4)
+
+<sub>8-second loop. Click for the MP4 (1280×720, 2.7 MB); the GIF above is 640×360, 5.7 MB.</sub>
 
 *A night inside the Caretaker.* An original interactive story, about three minutes long, made in three.js.
 
