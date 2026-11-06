@@ -4,7 +4,7 @@
 
 <sub>8-second loop. Click for the MP4 (1280×720, 2.7 MB); the GIF above is 640×360, 5.7 MB.</sub>
 
-*A night inside the Caretaker.* An original interactive story, about three minutes long, made in three.js.
+*A night inside the Caretaker.* An interactive story, about three minutes long, made in three.js. It is inspired by Harlan Ellison's short story *I Have No Mouth, and I Must Scream* (1967).
 
 Five people are left. Something keeps them. Every night it rebuilds the world from what they remember, almost perfectly.
 
@@ -40,7 +40,9 @@ python3 -m http.server 8000   # then open http://localhost:8000/almost-ripe.html
 | ![Memory](screenshots/shot-1-memory.png) | ![Break](screenshots/shot-2-break.png) |
 | ![Corridor](screenshots/shot-3-corridor.png) | ![Tree](screenshots/shot-5-tree.png) |
 
-## License
+## Credits and license
+
+Inspired by Harlan Ellison's *I Have No Mouth, and I Must Scream* (1967).
 
 Code: MIT. See [LICENSE](LICENSE). three.js is MIT; the fonts are under the SIL Open Font License.
 
