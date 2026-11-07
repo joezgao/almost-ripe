@@ -1,8 +1,15 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Almost Ripe</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect width='16' height='16' fill='%23040507'/%3E%3Ccircle cx='8' cy='8' r='3' fill='%23f2d6a4'/%3E%3C/svg%3E">
+<meta name="description" content="A night inside the Caretaker: an interactive story, about three minutes long, made in three.js.">
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=IBM+Plex+Mono:wght@300;400&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=IBM+Plex+Mono:wght@300;400&display=swap" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=IBM+Plex+Mono:wght@300;400&display=swap"></noscript>
 <style>
 /* Layout: one fullscreen WebGL stage; sparse type floats over it like subtitles. Warm memory above, cold machine below. */
 :root{
@@ -20,6 +27,7 @@
 html,body{height:100%;margin:0;background:var(--void);color:var(--ink);overflow:hidden}
 body{touch-action:none;-webkit-user-select:none;user-select:none;-webkit-tap-highlight-color:transparent;font-family:var(--serif)}
 #gl{position:fixed;inset:0;width:100%;height:100%;display:block;outline:none;cursor:grab}
+#gl:focus-visible{outline:1px dashed var(--ink-dim);outline-offset:-6px}
 #gl.drag{cursor:grabbing}
 #gl.reach{cursor:pointer}
 .layer{position:fixed;inset:0;pointer-events:none;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
@@ -89,6 +97,7 @@ body:has(#choice.on) #voice{bottom:calc(max(15vh,9vh + 84px) + env(safe-area-ins
 #mute.on{opacity:.9;pointer-events:auto;background-color:rgba(4,5,7,.22)}
 #mute::after{content:"";position:absolute;inset:-8px -6px}
 #mute:hover,#mute:focus-visible{opacity:1;color:var(--ink);outline:none}
+#mute:focus-visible,#credits button:focus-visible{outline:1px dashed var(--ink-dim);outline-offset:4px}
 #nogl{display:none;align-items:center;justify-content:center;text-align:center;font-style:italic;font-size:22px;color:var(--ink-dim)}
 
 @media (prefers-reduced-motion: reduce){
