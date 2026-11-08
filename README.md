@@ -44,6 +44,6 @@ python3 -m http.server 8000   # then open http://localhost:8000/almost-ripe.html
 
 Inspired by Harlan Ellison's *I Have No Mouth, and I Must Scream* (1967).
 
-Code: MIT. See [LICENSE](LICENSE). three.js is MIT; the fonts are under the SIL Open Font License.
+Code: MIT. The story (all text and voice lines) and the art are licensed under [CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/). See [LICENSE](LICENSE). three.js is MIT; the fonts are under the SIL Open Font License.
 
 Built with Claude for Joe Gao.
