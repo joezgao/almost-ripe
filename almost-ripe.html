@@ -125,6 +125,9 @@ body:has(#choice.on) #voice{bottom:calc(max(15vh,9vh + 84px) + env(safe-area-ins
   #credits h2{font-size:clamp(26px,8vw,34px)}
   #whisper{font-size:11px}
 }
+  /* craft floor (DESIGN.md 11/9): neutral text selection, press feedback */
+  ::selection{background:rgba(128,128,128,.35)}
+  button:active:not(:disabled){filter:brightness(.85)}
 </style>
 
 <canvas id="gl" tabindex="0" aria-label="Almost Ripe, an interactive story"></canvas>
