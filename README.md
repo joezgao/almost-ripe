@@ -10,6 +10,8 @@ Five people are left. Something keeps them. Every night it rebuilds the world fr
 
 ## Play it
 
+**Live:** [joezgao.github.io/almost-ripe/almost-ripe.html](https://joezgao.github.io/almost-ripe/almost-ripe.html) (nothing to install).
+
 Open `almost-ripe.html` in a recent desktop or mobile browser. It is a single file; it needs an internet connection the first time, to load three.js and two fonts. Headphones help: all of the sound is part of the piece.
 
 If your browser blocks local files, serve the folder instead:
