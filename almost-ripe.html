@@ -137,7 +137,7 @@ body:has(#choice.on) #voice{bottom:calc(max(15vh,9vh + 84px) + env(safe-area-ins
   <h1>Almost Ripe<span>a night inside the Caretaker</span></h1>
   <p class="lede">Five people are left. Something keeps them. Every night it rebuilds the world from what they remember, almost perfectly.</p>
   <div class="begin" id="beginLabel">click to wake</div>
-  <div class="meta" id="metaLabel">headphones &middot; about three minutes<br>wasd or arrows to walk &middot; drag to look</div>
+  <div class="meta" id="metaLabel">headphones, about three minutes<br>wasd or arrows to walk, drag to look</div>
 </div>
 
 <div class="layer" aria-live="polite">
@@ -196,7 +196,7 @@ const r2 = (a, b) => a + (b - a) * rnd2();
 
 if (COARSE) {
   $('beginLabel').textContent = 'tap to wake';
-  $('metaLabel').innerHTML = 'headphones &middot; about three minutes<br>drag to look &middot; touch and hold to walk';
+  $('metaLabel').innerHTML = 'headphones, about three minutes<br>drag to look, touch and hold to walk';
 }
 
 /* ------------------------------------------------------------------ renderer */
