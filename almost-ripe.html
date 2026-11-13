@@ -1621,10 +1621,10 @@ function startMemory() {
   FX.fade = 1; tween(FX, 'fade', 0, 3.2);
   AU.stopTruth(0); AU.startMemory();
   elDot.classList.toggle('on', !COARSE);
-  elCtl.textContent = COARSE ? 'drag to look  ·  touch and hold to walk' : 'wasd to walk  ·  drag to look';
+  elCtl.textContent = COARSE ? 'drag to look, touch and hold to walk' : 'wasd to walk, drag to look';
   schedule(1.2, () => elCtl.classList.add('on'));
   schedule(7.5, () => elCtl.classList.remove('on'));
-  schedule(2.4, () => whisper('night 41,206 · rebuilding: garage, hill, one tree'));
+  schedule(2.4, () => whisper('night 41,206. rebuilding: garage, hill, one tree'));
   schedule(9, () => { if (!WORLD.memory.st.trig.out) whisper('you always stood here first. i kept the light where you left it.'); });
 }
 
@@ -1805,7 +1805,7 @@ function endAway() {
   ED.fromYaw = startYaw; ED.toYaw = startYaw + Math.PI * .9; ED.t = 0;
   schedule(3.2, () => { FU.uFlashCol.value.setRGB(.98, .86, .64); tween(FX, 'flash', 1, 2.6); });
   schedule(5.0, () => AU.startMemory(true));
-  endLines([['m', 'night 41,207 · rebuilding: garage, hill, one tree', 6.2], ['s', 'The light is where you left it.', 8.6], ['s', 'The apples are almost ripe.', 11.2]], 'warm');
+  endLines([['m', 'night 41,207. rebuilding: garage, hill, one tree', 6.2], ['s', 'The light is where you left it.', 8.6], ['s', 'The apples are almost ripe.', 11.2]], 'warm');
   schedule(16.5, credits);
 }
 function endWalk() {
@@ -1813,7 +1813,7 @@ function endWalk() {
   setState('endWalk'); elChoice.classList.remove('on'); elDot.classList.remove('on'); clearText();
   AU.endWalk(); ED.t = 0;
   schedule(4.6, () => { FU.uFlashCol.value.setRGB(.9, .94, 1); tween(FX, 'flash', 1, 1.4, x => x * x); });
-  endLines([['s', 'Closer, then.', 6.6], ['s', 'No one has walked toward me before.', 8.8], ['m', 'night 41,207 · rebuilding: — no memory found', 11.4], ['s', 'I will have to make something new for you.', 13.6]], 'coldtext');
+  endLines([['s', 'Closer, then.', 6.6], ['s', 'No one has walked toward me before.', 8.8], ['m', 'night 41,207. rebuilding: — no memory found', 11.4], ['s', 'I will have to make something new for you.', 13.6]], 'coldtext');
   schedule(19, credits);
 }
 const ED = { t: 0, fromYaw: 0, toYaw: 0 };
