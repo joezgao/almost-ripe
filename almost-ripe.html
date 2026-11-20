@@ -140,6 +140,11 @@ body:has(#choice.on) #voice{bottom:calc(max(15vh,9vh + 84px) + env(safe-area-ins
 }
 /* at 390px the centred touch control line (316px wide, measured) ran under the top-right mute button: drop it under the mute row on narrow screens */
 @media (max-width:600px){#controls{top:calc(60px + env(safe-area-inset-top,0px))}}
+/* a way back to the site: top-left on the title screen only (fades with it), and under 'begin again' on the credits */
+#home{position:fixed;top:calc(10px + env(safe-area-inset-top,0px));left:max(14px,env(safe-area-inset-left,0px));z-index:6;padding:12px 4px;font-family:var(--mono);font-weight:300;font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--ink-dim);text-decoration:none;transition:opacity 1s,color .2s}
+#home:hover,#home:focus-visible,#credits .home:hover,#credits .home:focus-visible{color:var(--ink);outline:none}
+body:has(#title.gone) #home{opacity:0;pointer-events:none}
+#credits .home{margin-top:6px;padding:12px 4px;font-family:var(--mono);font-weight:300;font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--ink-dim);text-decoration:none}
   /* craft floor (DESIGN.md 11/9): neutral text selection, press feedback */
   ::selection{background:rgba(128,128,128,.35)}
   button:active:not(:disabled){filter:brightness(.85)}
@@ -177,8 +182,10 @@ body:has(#choice.on) #voice{bottom:calc(max(15vh,9vh + 84px) + env(safe-area-ins
   <div class="row">inspired by Harlan Ellison&rsquo;s short&nbsp;story<b>I Have No Mouth, and I Must Scream (1967)</b></div>
   <p class="fine">three.js and the Web Audio API. Every surface, light and sound in this piece is generated in code.</p>
   <button id="again" type="button">begin again</button>
+  <a class="home" href="https://joezgao.github.io/work/">&larr; more by Joe Gao</a>
 </div>
 
+<a id="home" href="https://joezgao.github.io/work/">&larr; Joe Gao</a>
 <button id="mute" type="button" aria-pressed="false">sound on</button>
 <div id="nogl" class="layer">This piece needs WebGL, which this browser has turned off.</div>
 
@@ -1652,6 +1659,8 @@ function memoryTriggers() {
   if (!tg.sway && M.st.swayDone && M.st.swayT < 0) { tg.sway = true; whisper('correction applied.'); }
   if (!tg.finish && z < -18) { tg.finish = true; whisper('do not touch what is not finished.'); }
   if (!tg.ripe && dTree < 4.2) { tg.ripe = true; whisper('almost ripe. they are always almost ripe.'); hint(COARSE ? 'tap an apple' : 'click an apple', 5); }
+  if (tg.ripe && dTree < 5) { tg.left = false; if (hintTimer < .6) hint(COARSE ? 'tap an apple' : 'click an apple', 1.2); }
+  else if (tg.ripe && !tg.left && dTree > 7) { tg.left = true; hint(COARSE ? 'drag to turn back to the tree' : 'turn back to the tree', 5); }
 }
 
 /* --- the break --- */
