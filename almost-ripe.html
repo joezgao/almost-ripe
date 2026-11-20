@@ -146,7 +146,7 @@ body:has(#choice.on) #voice{bottom:calc(max(15vh,9vh + 84px) + env(safe-area-ins
 #home{position:fixed;top:calc(10px + env(safe-area-inset-top,0px));left:max(14px,env(safe-area-inset-left,0px));z-index:6;padding:12px 4px;font-family:var(--mono);font-weight:300;font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--ink-dim);text-decoration:none;transition:opacity 1s,color .2s}
 #home:hover,#home:focus-visible,#credits .home:hover,#credits .home:focus-visible{color:var(--ink);outline:none}
 body:has(#title.gone) #home{opacity:0;pointer-events:none}
-#credits .home{margin-top:6px;padding:12px 4px;font-family:var(--mono);font-weight:300;font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--ink-dim);text-decoration:none}
+#credits .home{margin-top:6px;padding:12px 4px;font-family:var(--mono);font-weight:300;font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--ink-dim);text-decoration:none}   /* token-ok: 6px matches the credits rows above */
   /* craft floor (DESIGN.md 11/9): neutral text selection, press feedback */
   ::selection{background:rgba(128,128,128,.35)}
   button:active:not(:disabled){filter:brightness(.85)}
