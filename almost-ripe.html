@@ -670,6 +670,9 @@ function buildMemory() {
     M4.compose(s[0], QQ, SS); trunk.setMatrixAt(i, M4);
   });
   trunk.castShadow = true; trunk.receiveShadow = true; scene.add(trunk);
+  /* how close a standing eye may come: the widest bark (trunk and low limbs, tapering as drawn) between knee and head height */
+  let barkR = 0;
+  segs.forEach(([a, e, r]) => { for (let k = 0; k <= 8; k++) { const q = a.clone().lerp(e, k / 8), h = q.y - T.y; if (h > .4 && h < 2.1) barkR = Math.max(barkR, Math.hypot(q.x - T.x, q.z - T.z) + r * (1 - .36 * k / 8)); } });
   const crownC = new V3(); tips.forEach(t => crownC.add(t)); crownC.divideScalar(tips.length);
   let crownR = 0; tips.forEach(t => crownR = Math.max(crownR, t.distanceTo(crownC)));
   const leafTex = canvasTex(256, 256, (g, w) => {
@@ -946,7 +949,7 @@ function buildMemory() {
     renderer.toneMappingExposure = lerp(1.05, .88, outside);
     AU.memoryWrong(st.W);
   }
-  return { scene, update, reset, apples, T, groundH, st, sunDir, setQuality };
+  return { scene, update, reset, apples, T, barkR, groundH, st, sunDir, setQuality };
 }
 
 /* ================================================================== SCENE 2: the truth */
@@ -1555,7 +1558,7 @@ addEventListener('keyup', e => { const k = keyMap[e.code]; if (k) K[k] = false; 
 addEventListener('blur', () => { for (const k in K) K[k] = false; P.down = false; P.walk = false; });
 canvas.addEventListener('pointerdown', e => {
   if (P.down) return;
-  P.down = true; P.id = e.pointerId; P.x = P.sx = e.clientX; P.y = P.sy = e.clientY; P.t0 = performance.now(); P.moved = false; P.holdT = 0; P.walk = false;
+  P.down = true; P.id = e.pointerId; P.x = P.sx = e.clientX; P.y = P.sy = e.clientY; P.t0 = performance.now(); P.moved = false; P.holdT = 0; P.walk = false; P.near = false; P.dTree = undefined;
   try { canvas.setPointerCapture(e.pointerId); } catch (_) { }
   lastInput = S.t;
 });
@@ -1871,7 +1874,8 @@ function constrainMemory(o, n) {
   if (n.z >= .15) { n.x = clamp(n.x, -1.85, 1.85); n.z = Math.min(n.z, 6.0); }
   else { n.x = clamp(n.x, -16, 16); n.z = Math.max(n.z, -36); }
   const dx = n.x - M.T.x, dz = n.z - M.T.z, d = Math.hypot(dx, dz);
-  if (d < .75) { n.x = M.T.x + dx / d * .75; n.z = M.T.z + dz / d * .75; }
+  const R = Math.max(.75, M.barkR + .3);
+  if (d < R) { n.x = M.T.x + dx / d * R; n.z = M.T.z + dz / d * R; }
 }
 function constrainTruth(o, n) {
   const T = WORLD.truth;
@@ -1882,8 +1886,22 @@ function constrainTruth(o, n) {
   const dx = n.x - T.stonePos.x, dz = n.z - T.stonePos.z, d = Math.hypot(dx, dz);
   if (d < 3) { n.x = T.stonePos.x + dx / d * 3; n.z = T.stonePos.z + dz / d * 3; }
 }
+/* phones: a held walk stops once the apples are in reach and turns the view to the nearest one; lift and hold again to go on */
+function nearTreeStop() {
+  const M = WORLD.memory, d = Math.hypot(camera.position.x - M.T.x, camera.position.z - M.T.z), was = P.dTree;
+  P.dTree = d;
+  if (was === undefined || was < 3.4 || d >= 3.4) return;
+  P.walk = false; P.near = true;
+  let best = null, bd = 4.2;
+  M.apples.forEach(a => { const q = a.position.distanceTo(camera.position); if (q < bd) { bd = q; best = a; } });
+  if (!best) return;
+  const v = best.position.clone().sub(camera.position), y = Math.atan2(-v.x, -v.z);
+  yawT += Math.atan2(Math.sin(y - yawT), Math.cos(y - yawT));
+  pitchT = clamp(Math.atan2(v.y, Math.hypot(v.x, v.z)), -1.2, 1.2);
+}
 function updatePlayer(dt) {
-  if (P.down && !P.walk) { P.holdT += dt; if (P.holdT > .24 && (!P.moved || COARSE)) P.walk = true; }
+  if (COARSE && P.walk && S.state === 'memory') nearTreeStop();
+  if (P.down && !P.walk && !P.near) { P.holdT += dt; if (P.holdT > .24 && (!P.moved || COARSE)) P.walk = true; }
   const [f, s] = controlsOn() ? moveInput() : [0, 0];
   let speed = S.state === 'memory' ? 2.4 : 2.9;
   if (S.state === 'lock' || S.state === 'choice') speed = 0;
